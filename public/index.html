@@ -7,7 +7,16 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
+    <meta name="identifier-url" content="https://sorteador.giordane.dev/" />
+    <meta name="title" content="Sorteador de números" />
+    <meta name="description" content="Sorteador de números aleatórios " />
+    <meta name="abstract" content="Sorteador de números aleatórios " />
+    <meta name="keywords" content="sorteador, sorteio, sortear números " />
+    <meta name="author" content="Dev_ Giordane" />
+    <meta name="revisit-after" content="15" />
+    <meta name="language" content="PT" />
+    <meta name="copyright" content="© 2019 Dev_ Giordane" />
+    <meta name="robots" content="All" />
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -16,7 +25,7 @@
       crossorigin="anonymous"
     />
 
-    <title>Hello, world!</title>
+    <title>Sorteador de números</title>
   </head>
   <body>
     <div id="app">
@@ -143,5 +152,12 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="js/main.js"></script>
+    <script>
+    if ('seviceWorker' in navigator) {
+      window.addEventListener('load',()=>{
+        navigator.serviceWorker.register('/sw.js')
+      });
+    }
+    </script>
   </body>
 </html>

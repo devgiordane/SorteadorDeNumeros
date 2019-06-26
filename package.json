@@ -1,5 +1,5 @@
 {
-  "name": "SorteadorDeNumeros",
+  "name": "sorteadordenumeros",
   "version": "1.0.0",
   "description": "PWA Sorteador de números",
   "main": "index.js",
