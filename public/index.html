@@ -1,163 +1,17 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="identifier-url" content="https://sorteador.giordane.dev/" />
-    <meta name="title" content="Sorteador de números" />
-    <meta name="description" content="Sorteador de números aleatórios " />
-    <meta name="abstract" content="Sorteador de números aleatórios " />
-    <meta name="keywords" content="sorteador, sorteio, sortear números " />
-    <meta name="author" content="Dev_ Giordane" />
-    <meta name="revisit-after" content="15" />
-    <meta name="language" content="PT" />
-    <meta name="copyright" content="© 2019 Dev_ Giordane" />
-    <meta name="robots" content="All" />
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-
-    <title>Sorteador de números</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
-    <div id="app">
-      <div class="container">
-        <div class="row">
-          <div class="col-6">
-            <form class="">
-              <div class="form-group">
-                <label>Valor inicial</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  placeholder="ex: 01"
-                  v-model.number="valorInicial"
-                />
-                <small v-show="ajudaVi" class="form-text text-muted">
-                  Este campo não pode ficar em branco.
-                </small>
-              </div>
-            </form>
-          </div>
-          <div class="col-6">
-            <form class="">
-              <div class="form-group">
-                <label>Valor final</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  placeholder="ex: 100"
-                  v-model.number="valorFinal"
-                />
-                <small v-show="ajudaVf" class="form-text text-muted">
-                  Este campo não pode ficar em branco.
-                </small>
-              </div>
-            </form>
-          </div>
-          <div class="col-6 text-dark">múltiplos números</div>
-          <div class="col-6 text-dark">repetir números</div>
-          <div class="col-6 d-flex justify-content-end align-items-center">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <input
-                    type="checkbox"
-                    aria-label="Checkbox for following text input"
-                    v-model="multiNumberCheckbox"
-                  />
-                </div>
-              </div>
-              <input
-                type="text"
-                class="form-control"
-                aria-label="Text input with checkbox"
-                :disabled="multiNumberDisabled"
-                v-model="multiNumberValue"
-              />
-            </div>
-          </div>
-
-          <div class="col-6 d-flex justify-content-end align-items-center">
-            <div class="btn-group btn-group-toggle  btn-block">
-              <!-- data-toggle="buttons" -->
-              <label :class="'btn btn-primary ' + repeatNumbersYes">
-                <input type="radio" value="sim" v-model="repeatNumbers" />
-                Sim
-              </label>
-              <label :class="'btn btn-primary ' + repeatNumbersNo">
-                <input type="radio" value="nao" v-model="repeatNumbers" />
-                Não
-              </label>
-            </div>
-          </div>
-          <div class="col-6">
-            <small v-show="multiNumberHelp" class="form-text text-muted">
-              Este campo não pode ficar em branco.
-            </small>
-          </div>
-          <div class="col-6">
-            <small v-show="repeatNumbersHelp" class="form-text text-muted">
-              Para que o numeros sorteados não se repitam, é necessário que a
-              quantidade de numeros a serem sorteados seja menor o fim do
-              intervalo.
-            </small>
-          </div>
-          <div class="col-12 py-3">
-            <button
-              v-on:click="sortear"
-              :disabled="DisableButtonSort"
-              class="btn btn-primary btn-lg btn-block"
-            >
-              Sortear
-            </button>
-          </div>
-          <div class="col-12 text-black-50">
-            <h3>{{ info }}</h3>
-            <div class="sortedNumbers">
-              <div class="sortedNumber" v-for="number in sortedNumbers">
-                <h3>{{ number }}</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div v-html="load"></div>
-    </div>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="js/main.js"></script>
-    <script>
-    if ('seviceWorker' in navigator) {
-      window.addEventListener('load',()=>{
-        navigator.serviceWorker.register('/sw.js')
-      });
-    }
-    </script>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
   </body>
 </html>
